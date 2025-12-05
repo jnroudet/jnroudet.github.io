@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} – {{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ "/style.css" | relative_path }}">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">{{ site.title }}</div>
+        <ul>
+          <li><a href="{{ "/" | relative_path }}#accueil">Accueil</a></li>
+          <li><a href="{{ "/" | relative_path }}#apropos">À propos</a></li>
+          <li><a href="{{ "/" | relative_path }}#experience">Expérience</a></li>
+          <li><a href="{{ "/blog.html" | relative_path }}">Blog</a></li>
+          <li><a href="{{ "/" | relative_path }}#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="article">
+      <div class="container">
+        <h1 class="section-title">{{ page.title }}</h1>
+        <p class="section-intro">
+          Publié le {{ page.date | date: "%d %B %Y" }}
+        </p>
+
+        <article class="card">
+          {{ content }}
+        </article>
+
+        <p style="margin-top:1.5rem;">
+          <a class="btn secondary" href="{{ "/blog.html" | relative_path }}">← Retour au blog</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer">
+      <div class="footer-brand">
+        <div class="footer-title">{{ site.title }}</div>
+        <div class="footer-copy">© <span id="year"></span> – Tous droits réservés.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

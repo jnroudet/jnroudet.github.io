@@ -1,0 +1,70 @@
+---
+layout: default
+title: "Blog & Articles"
+---
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Blog & Articles – {{ site.title }}</title>
+  <meta name="description" content="Articles sur le management, Angular/Nx, expérience développeur et leadership technique.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <div class="brand">{{ site.title }}</div>
+      <ul>
+        <li><a href="{{ "/" | relative_path }}#accueil">Accueil</a></li>
+        <li><a href="{{ "/" | relative_path }}#apropos">À propos</a></li>
+        <li><a href="{{ "/" | relative_path }}#experience">Expérience</a></li>
+        <li><a href="{{ "/blog.html" | relative_path }}">Blog</a></li>
+        <li><a href="{{ "/" | relative_path }}#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="blog">
+  <div class="container">
+    <h2 class="section-title">Blog & Articles</h2>
+    <p class="section-intro">
+      Je partage ici mes réflexions sur le management, l’expérience développeur, Angular/Nx
+      et la vie d’équipe.
+    </p>
+
+    <div class="grid">
+      {% for post in site.posts %}
+      <article class="card">
+        <h3>{{ post.title }}</h3>
+        <p class="tagline">
+          Publié le {{ post.date | date: "%d %B %Y" }}
+        </p>
+        <p>
+          {{ post.excerpt | strip_html | truncate: 200 }}
+        </p>
+        <a class="btn secondary" href="{{ post.url | relative_path }}">Lire l’article</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer">
+    <div class="footer-brand">
+      <div class="footer-title">{{ site.title }}</div>
+      <div class="footer-copy">© <span id="year"></span> – Tous droits réservés.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

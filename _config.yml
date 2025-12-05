@@ -1,0 +1,10 @@
+title: "Jennifer Buisson"
+description: "Engineering Manager & Lead Front-End – Angular"
+baseurl: ""
+url: "https://jnroudet.github.io"
+
+theme: null
+
+collections:
+  posts:
+    output: true
