@@ -22,6 +22,10 @@ title: "Blog & Articles"
         <li><a href="{{ "/" | relative_path }}#accueil">Accueil</a></li>
         <li><a href="{{ "/" | relative_path }}#apropos">À propos</a></li>
         <li><a href="{{ "/" | relative_path }}#experience">Expérience</a></li>
+        <li><a href="{{ "/" | relative_path }}#competences">Compétences</a></li>
+        <li><a href="{{ "/" | relative_path }}#projets">Projets</a></li>
+        <li><a href="{{ "/" | relative_path }}#vision">Vision</a></li>
+        <li><a href="{{ "/" | relative_path }}#hobbies">Hobbies</a></li>
         <li><a href="{{ "/blog.html" | relative_path }}">Blog</a></li>
         <li><a href="{{ "/" | relative_path }}#contact">Contact</a></li>
       </ul>
@@ -54,14 +58,63 @@ title: "Blog & Articles"
   </div>
 </section>
 
-<footer>
-  <div class="container footer">
-    <div class="footer-brand">
-      <div class="footer-title">{{ site.title }}</div>
-      <div class="footer-copy">© <span id="year"></span> – Tous droits réservés.</div>
-    </div>
-  </div>
-</footer>
+    <footer>
+      <div class="container footer">
+        <div class="footer-brand">
+          <div class="footer-title">Jennifer Buisson</div>
+          <div class="footer-subtitle">
+            Engineering Manager & Lead Front-End · Montpellier, France
+          </div>
+          <div class="footer-copy">
+            © <span id="year"></span> – Tous droits réservés.
+          </div>
+        </div>
+
+        <div class="footer-columns">
+          <div class="footer-column">
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="#accueil">Accueil</a></li>
+              <li><a href="#apropos">À propos</a></li>
+              <li><a href="#experience">Expérience</a></li>
+              <li><a href="#projets">Projets</a></li>
+              <li><a href="#hobbies">Hobbies</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Contact</h3>
+            <ul>
+              <li>
+                <a href="mailto:ton.email@gmail.com">jnroudet@gmail.com</a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/jennifer-buisson-engineering-manager/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a href="cv_buisson_em.pdf" target="_blank" rel="noreferrer"
+                  >CV (PDF)</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/jnroudet"
+                  target="_blank"
+                  rel="noreferrer"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
