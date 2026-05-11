@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const notes = await getCollection("notes");
+
+notes.sort((a, b) =>
+  b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Layout title="Notes — jnroudet">
+  <section class="py-20">
+    <p class="mb-4 text-sm uppercase tracking-[0.2em] text-[#A5A58D]">
+      Notes
+    </p>
+
+    <h1 class="max-w-2xl text-5xl font-light md:text-6xl">
+      Fragments, idées et traces.
+    </h1>
+
+    <div class="mt-16 space-y-6">
+      {
+        notes.map((note) => (
+          <article class="rounded-3xl border border-black/5 bg-white/50 p-6 shadow-sm">
+            <p class="text-sm text-[#6B705C]">
+              {note.data.date.toLocaleDateString("fr-FR")}
+            </p>
+
+            <h2 class="mt-3 text-xl">
+              {note.data.title}
+            </h2>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

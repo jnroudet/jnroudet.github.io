@@ -1,0 +1,49 @@
+---
+import Hero from "../components/Hero.astro";
+import Layout from "../layouts/layout.astro";
+---
+
+<Layout title="jnroudet — Home">
+  <Hero />
+
+  <section class="grid gap-6 py-10 md:grid-cols-3">
+    <article
+      class="rounded-3xl border border-black/5 bg-white/50 p-8 shadow-sm transition hover:-translate-y-1"
+    >
+      <p class="mb-3 text-sm uppercase tracking-[0.2em] text-[#6B705C]">
+        Tech
+      </p>
+      <h2 class="mb-4 text-2xl">Construire</h2>
+      <p class="leading-relaxed text-black/70">
+        Architecture web, expérience utilisateur, interfaces soignées
+        et produits pensés dans le détail.
+      </p>
+    </article>
+
+    <article
+      class="rounded-3xl border border-black/5 bg-white/50 p-8 shadow-sm transition hover:-translate-y-1"
+    >
+      <p class="mb-3 text-sm uppercase tracking-[0.2em] text-[#CB997E]">
+        Création
+      </p>
+      <h2 class="mb-4 text-2xl">Imaginer</h2>
+      <p class="leading-relaxed text-black/70">
+        Explorer des idées, prototyper, raconter par la forme,
+        le design ou le jeu.
+      </p>
+    </article>
+
+    <article
+      class="rounded-3xl border border-black/5 bg-white/50 p-8 shadow-sm transition hover:-translate-y-1"
+    >
+      <p class="mb-3 text-sm uppercase tracking-[0.2em] text-[#A5A58D]">
+        Écriture
+      </p>
+      <h2 class="mb-4 text-2xl">Partager</h2>
+      <p class="leading-relaxed text-black/70">
+        Notes, réflexions et fragments d’idées —
+        une trace vivante de ce qui nourrit le travail.
+      </p>
+    </article>
+  </section>
+</Layout>
