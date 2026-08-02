@@ -1,34 +1,42 @@
 ---
 const links = [
   { href: "/", label: "Accueil" },
-  { href: "/articles", label: "Articles" },
-  { href: "/notes", label: "Notes" },
+  { href: "/articles", label: "Journal" },
+  { href: "/projects", label: "Projets" },
   { href: "/about", label: "À propos" },
 ];
+
+const pathname = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 border-b border-black/5 bg-[#F6F1E8]/90 backdrop-blur">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-    <a
-      href="/"
-      class="text-lg font-semibold tracking-tight hover:opacity-70 transition"
-    >
-      jnroudet
-    </a>
+<header class="sticky top-0 z-50 bg-[#f3f0ff]">
+  <nav class="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="/" class="text-xl font-bold tracking-tight">JB.</a>
 
-    <ul class="flex gap-6 text-sm">
+    <ul class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-xs font-medium uppercase tracking-wide">
       {
-        links.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class="opacity-80 transition hover:opacity-100 hover:text-[#CB997E]"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
+        links.map((link) => {
+          const isActive =
+            link.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(link.href);
+          return (
+            <li>
+              <a
+                href={link.href}
+                class={`transition hover:text-black ${
+                  isActive
+                    ? "text-[#5535c4] font-semibold"
+                    : "text-[#555555]"
+                }`}
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
+
   </nav>
 </header>

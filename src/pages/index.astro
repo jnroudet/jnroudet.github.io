@@ -1,49 +1,132 @@
 ---
+import { getCollection } from "astro:content";
 import Hero from "../components/Hero.astro";
+import PostCard from "../components/PostCard.astro";
 import Layout from "../layouts/layout.astro";
+
+const allPosts = await getCollection("posts");
+const latestPosts = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+
+const themes = [
+  { icon: "brush", label: "Design", count: 0, color: "#7c3aed" },
+  { icon: "code", label: "Développement", count: 0, color: "#2563eb" },
+  { icon: "groups", label: "Management", count: 0, color: "#d97706" },
+  { icon: "psychology", label: "IA & Outils", count: 0, color: "#16a34a" },
+  { icon: "menu_book", label: "Apprentissages", count: 0, color: "#0891b2" },
+  { icon: "sticky_note_2", label: "Notes", count: 0, color: "#C084FC" },
+];
+
+const projects = [
+  {
+    title: "A venir",
+    description: "Projet en cours de développement, je suis impatiente de pouvoir en parler très vite !",
+    status: "Projet en cours",
+    statusColor: "#7c3aed",
+    imageUrl: "https://images.pexels.com/photos/33773995/pexels-photo-33773995.jpeg",
+  },
+  {
+    title: "Tableau de bord personnel",
+    description: "Outil de suivi de mes projets, idées, inspirations et apprentissages. Un espace pour m'organiser et rester créative.",
+    status: "Side project",
+    statusColor: "#2563eb",
+    imageUrl: "https://images.pexels.com/photos/8850721/pexels-photo-8850721.jpeg",
+  },
+  {
+    title: "Suivi de candidatures",
+    description: "Outil pour suivre mes candidatures multi sites, création de CV et lettres de motivation assistée par l'IA.",
+    status: "Side project",
+    statusColor: "#2563eb",
+    imageUrl: "https://images.pexels.com/photos/5989943/pexels-photo-5989943.jpeg",
+  },
+];
 ---
 
-<Layout title="jnroudet — Home">
+<Layout title="Jennifer Buisson. Développeuse, Artiste, Manager.">
   <Hero />
 
-  <section class="grid gap-6 py-10 md:grid-cols-3">
-    <article
-      class="rounded-3xl border border-black/5 bg-white/50 p-8 shadow-sm transition hover:-translate-y-1"
-    >
-      <p class="mb-3 text-sm uppercase tracking-[0.2em] text-[#6B705C]">
-        Tech
-      </p>
-      <h2 class="mb-4 text-2xl">Construire</h2>
-      <p class="leading-relaxed text-black/70">
-        Architecture web, expérience utilisateur, interfaces soignées
-        et produits pensés dans le détail.
-      </p>
-    </article>
+  <!-- Derniers articles -->
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[#e5e5e5]">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold">
+        Derniers articles <span class="text-[#6b47dc]">.</span>
+      </h2>
+      <a href="/articles" class="text-sm text-[#555] hover:text-black transition flex items-center gap-1">
+        Voir tous les articles →
+      </a>
+    </div>
 
-    <article
-      class="rounded-3xl border border-black/5 bg-white/50 p-8 shadow-sm transition hover:-translate-y-1"
-    >
-      <p class="mb-3 text-sm uppercase tracking-[0.2em] text-[#CB997E]">
-        Création
-      </p>
-      <h2 class="mb-4 text-2xl">Imaginer</h2>
-      <p class="leading-relaxed text-black/70">
-        Explorer des idées, prototyper, raconter par la forme,
-        le design ou le jeu.
-      </p>
-    </article>
+    {latestPosts.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {latestPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            slug={post.id}
+            category={post.data.category}
+            readingTime={post.data.readingTime}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-16 text-[#999]">
+        <p class="text-lg">Les articles arrivent bientôt.</p>
+        <p class="text-sm mt-2">Je suis en train de préparer du contenu pour vous.</p>
+      </div>
+    )}
+  </section>
 
-    <article
-      class="rounded-3xl border border-black/5 bg-white/50 p-8 shadow-sm transition hover:-translate-y-1"
-    >
-      <p class="mb-3 text-sm uppercase tracking-[0.2em] text-[#A5A58D]">
-        Écriture
-      </p>
-      <h2 class="mb-4 text-2xl">Partager</h2>
-      <p class="leading-relaxed text-black/70">
-        Notes, réflexions et fragments d’idées —
-        une trace vivante de ce qui nourrit le travail.
-      </p>
-    </article>
+  <!-- Explorer par thématiques -->
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[#e5e5e5]">
+    <h2 class="text-2xl font-bold mb-8">Explorer par thématiques <span class="text-[#6b47dc]">.</span></h2> 
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+      {themes.map((theme) => (
+        <a
+          href={`/articles?category=${encodeURIComponent(theme.label)}`}
+          class="group flex flex-col items-start p-5 bg-white border border-[#e5e5e5] rounded-2xl hover:shadow-md transition-shadow"
+        >
+          <span class="material-icons-round text-2xl mb-3" style={`color: ${theme.color}`}>{theme.icon}</span>
+          <p class="font-semibold text-sm mb-1">{theme.label}</p>
+          <p class="text-xs text-[#999]">{theme.count} articles</p>
+          <div class="mt-3 h-0.5 w-full rounded-full" style={`background: ${theme.color}`}></div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Projets en cours -->
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[#e5e5e5]">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold">Projets en cours <span class="text-[#6b47dc]">.</span></h2>
+      <a href="/projects" class="text-sm text-[#555] hover:text-black transition flex items-center gap-1">
+        Voir tous les projets →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      {projects.map((project) => (
+        <div class="bg-white border border-[#e5e5e5] rounded-2xl p-6 hover:shadow-md transition-shadow">
+          {project.imageUrl && (
+            <div class="h-32 bg-[#f5f5f5] rounded-xl mb-4">
+              <img src={project.imageUrl} alt={project.title} class="w-full h-full object-cover" />
+            </div>
+          )}
+          <h3 class="font-bold mb-2">{project.title}</h3>
+          <p class="text-sm text-[#666] mb-4 leading-relaxed">{project.description}</p>
+          <span
+            class="inline-block text-xs font-semibold px-3 py-1 rounded-full"
+            style={`color: ${project.statusColor}; background: ${project.statusColor}18`}
+          >
+            {project.status}
+          </span>
+        </div>
+      ))}
+      <div class="bg-[#f8f8f8] border border-dashed border-[#ddd] rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[200px]">
+        <div class="w-10 h-10 rounded-full bg-white border border-[#ddd] flex items-center justify-center mb-3 text-xl font-light text-[#999]">+</div>
+        <p class="text-sm text-[#999]">Toujours en train<br />de construire<br />de nouvelles choses.</p>
+      </div>
+    </div>
   </section>
 </Layout>

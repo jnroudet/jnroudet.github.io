@@ -1,28 +1,239 @@
 ---
 import Layout from "../layouts/layout.astro";
+
+const experiences = [
+  {
+    title: "Engineering Manager",
+    company: "Septeo Solutions Notaires",
+    location: "Montpellier",
+    period: "Juil. 2024 – Avr. 2025",
+    bullets: [
+      "Management d'une équipe de 8 développeurs frontend : 1-on-1s, plans de développement individuels, cycle de reviews",
+      "Structuration des rituels de delivery (planning, rétro, démos) pour améliorer la prédictibilité",
+      "Interface principale entre l'équipe et les parties prenantes Product et UX",
+      "Recrutement et onboarding des nouvelles recrues",
+      "Maintien des standards qualité sur l'ensemble du périmètre frontend",
+    ],
+  },
+  {
+    title: "Lead Frontend Developer",
+    company: "Septeo Solutions Notaires",
+    location: "Montpellier",
+    period: "Févr. 2023 – Juil. 2024",
+    bullets: [
+      "Lead technique sur une plateforme SaaS critique en Angular / TypeScript, ownership de l'architecture",
+      "Structuration du codebase avec Nx monorepo et domain-driven design",
+      "Définition et application des standards qualité : TDD, Jest → Vitest, CI/CD, code reviews",
+      "Migration Jest → Vitest : amélioration des performances de build et couverture de tests",
+      "Mentoring des développeurs, identification et priorisation de la dette technique",
+    ],
+  },
+  {
+    title: "Senior Frontend Developer",
+    company: "Hawk (ex-Tabmo)",
+    location: "Montpellier",
+    period: "Juin 2020 – Jan. 2023",
+    bullets: [
+      "Développement de fonctionnalités complexes en Angular et React (TypeScript), SaaS haute volumétrie",
+      "Ownership de features de bout en bout : spécification → mise en production",
+      "Refactoring orienté performance et maintenabilité",
+      "TDD, code reviews, pair programming, collaboration Product/UX",
+    ],
+  },
+  {
+    title: "Fullstack JavaScript Developer",
+    company: "Infomir",
+    location: "Genève",
+    period: "Sept. 2019 – Avr. 2020",
+    bullets: [
+      "Développement de modules front et back en Angular et Node.js",
+      "Interfaces temps réel, intégration de protocoles de communication, architecture modulaire",
+    ],
+  },
+  {
+    title: "Frontend Developer",
+    company: "WIDE Switzerland (Talan Group)",
+    location: "Genève",
+    period: "Mars 2017 – Août 2019",
+    bullets: [
+      "Lead technique sur projets e-commerce et applications corporate",
+      "Adoption de React au sein de l'équipe, interfaces accessibles et performantes (Angular, React)",
+    ],
+  },
+  {
+    title: "Web Developer",
+    company: "Matooma",
+    location: "Montpellier",
+    period: "Oct. 2014 – Déc. 2016",
+    bullets: [
+      "Plateforme SaaS M2MManager, interfaces responsive, CRM interne, introduction des pratiques agiles",
+    ],
+  },
+];
+
+const skills = [
+  { label: "Frontend", items: ["Angular (avancé, RxJS, Signals)", "React", "TypeScript (expert)", "JavaScript", "HTML5/CSS3"] },
+  { label: "Backend", items: ["Node.js (API, intégrations)"] },
+  { label: "Architecture", items: ["Nx monorepo", "Domain-Driven Design", "Clean Code", "Modularisation"] },
+  { label: "Qualité", items: ["TDD", "Jest / Vitest", "CI/CD", "Code reviews", "Performance", "Accessibilité web"] },
+  { label: "Leadership", items: ["Management d'équipe", "Mentoring", "Recrutement", "Plans de développement", "Feedback culture"] },
+  { label: "Méthodes", items: ["Agile", "Collaboration Product/UX", "Ownership produit", "Priorisation"] },
+];
+
+const education = [
+  { degree: "Master Informatique de Gestion", school: "Université de Toulouse", period: "2013 – 2014" },
+  { degree: "Licence Informatique", school: "Université Montpellier 2", period: "2009 – 2012" },
+];
 ---
 
-<Layout title="À propos — jnroudet">
-  <section class="max-w-3xl py-20">
-    <p class="mb-4 text-sm uppercase tracking-[0.2em] text-[#CB997E]">
-      À propos
-    </p>
+<Layout title="À propos - Jennifer Buisson">
+  <div class="mx-auto max-w-6xl px-6 py-16">
 
-    <h1 class="text-5xl font-light md:text-6xl">
-      Construire avec sens.
-    </h1>
+    <!-- En-tête -->
+    <div class="grid md:grid-cols-[1fr_auto] gap-12 items-start mb-16 pb-16 border-b border-[#e5e5e5]">
+      <div>
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#888] mb-4">À propos</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Jennifer Buisson <span class="text-[#6b47dc]">.</span>
+        </h1>
+        <p class="text-lg text-[#555] font-medium mb-6">Engineering Manager · Lead Frontend</p>
+        <p class="text-[#666] leading-relaxed max-w-2xl mb-8">
+          Engineering Manager avec 10 ans d'expérience en développement frontend et fullstack JavaScript,
+          dont plusieurs années en Lead Technique et une année en management formalisé. Spécialisée dans
+          les plateformes SaaS à fort trafic, les architectures frontend robustes et la croissance des
+          équipes.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="https://www.linkedin.com/in/jennifer-buisson-engineering-manager/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full border border-[#e5e5e5] hover:border-[#6b47dc] hover:text-[#6b47dc] transition"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/jnroudet"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full border border-[#e5e5e5] hover:border-[#6b47dc] hover:text-[#6b47dc] transition"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full bg-[#5535c4] text-white hover:bg-[#4429a8] transition"
+          >
+            <span class="material-icons-round text-sm">download</span>
+            Télécharger le CV
+          </a>
+        </div>
+      </div>
 
-    <div class="mt-10 space-y-6 leading-relaxed text-black/75">
-      <p>
-        Je conçois des expériences numériques pensées avec attention :
-        robustes techniquement, élégantes dans leur forme,
-        et utiles dans leur usage.
-      </p>
-
-      <p>
-        Entre ingénierie, création et écriture,
-        ce site rassemble projets, réflexions et expérimentations.
-      </p>
+      <!-- Infos rapides -->
+      <div class="bg-[#f8f8f8] rounded-2xl p-6 min-w-[220px]">
+        <ul class="space-y-4 text-sm">
+          <li class="flex items-start gap-3">
+            <span class="material-icons-round text-[#6b47dc] text-base mt-0.5">location_on</span>
+            <span class="text-[#444]">Montpellier, France<br /><span class="text-[#888]">Remote France</span></span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-icons-round text-[#6b47dc] text-base mt-0.5">work</span>
+            <span class="text-[#444]">10 ans d'expérience</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-icons-round text-[#6b47dc] text-base mt-0.5">translate</span>
+            <span class="text-[#444]">Français (natif)<br /><span class="text-[#888]">Anglais (B1)</span></span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-icons-round text-[#6b47dc] text-base mt-0.5">favorite</span>
+            <span class="text-[#444]">Escalade · Badminton<br />Impression 3D · Écriture</span>
+          </li>
+        </ul>
+      </div>
     </div>
-  </section>
+
+    <div class="grid md:grid-cols-[1fr_320px] gap-16">
+      <!-- Colonne principale -->
+      <div>
+
+        <!-- Expérience -->
+        <section class="mb-16">
+          <h2 class="text-2xl font-bold mb-8">
+            Expérience <span class="text-[#6b47dc]">.</span>
+          </h2>
+          <div class="space-y-10">
+            {experiences.map((exp) => (
+              <div class="relative pl-6 border-l-2 border-[#e5e5e5] hover:border-[#6b47dc] transition-colors">
+                <div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-[#5535c4]"></div>
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-base">{exp.title}</h3>
+                  <span class="text-xs text-[#999]">{exp.period}</span>
+                </div>
+                <p class="text-sm text-[#6b47dc] font-medium mb-3">{exp.company} · {exp.location}</p>
+                <ul class="space-y-1.5">
+                  {exp.bullets.map((b) => (
+                    <li class="text-sm text-[#555] leading-relaxed flex gap-2">
+                      <span class="text-[#bbb] mt-1.5 shrink-0">•</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Formation -->
+        <section>
+          <h2 class="text-2xl font-bold mb-8">
+            Formation <span class="text-[#6b47dc]">.</span>
+          </h2>
+          <div class="space-y-6">
+            {education.map((edu) => (
+              <div class="relative pl-6 border-l-2 border-[#e5e5e5] hover:border-[#6b47dc] transition-colors">
+                <div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-[#5535c4]"></div>
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-base">{edu.degree}</h3>
+                  <span class="text-xs text-[#999]">{edu.period}</span>
+                </div>
+                <p class="text-sm text-[#6b47dc] font-medium">{edu.school}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <!-- Sidebar compétences -->
+      <aside class="space-y-8">
+        <h2 class="text-2xl font-bold">
+          Compétences <span class="text-[#6b47dc]">.</span>
+        </h2>
+        {skills.map((group) => (
+          <div>
+            <p class="text-xs font-semibold tracking-[0.15em] uppercase text-[#aaa] mb-3">{group.label}</p>
+            <div class="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <span class="text-xs font-medium px-3 py-1.5 bg-[#f0f0f0] text-[#444] rounded-full">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- Encart livre -->
+        <div class="mt-8 bg-[#5535c4]/5 border border-[#6b47dc]/20 rounded-2xl p-5">
+          <span class="material-icons-round text-[#6b47dc] mb-2 block">auto_stories</span>
+          <p class="text-sm font-semibold text-[#333] mb-1">Livre en cours d'écriture</p>
+          <p class="text-xs text-[#666] leading-relaxed">
+            Auteure d'un livre sur l'engineering management - retours d'expérience, méthodes et réflexions sur le rôle de manager tech.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
 </Layout>

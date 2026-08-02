@@ -1,0 +1,8 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+const latest = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())[0];
+
+return Astro.redirect(latest ? `/articles/${latest.id}` : "/articles");
+---

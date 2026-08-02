@@ -1,0 +1,273 @@
+---
+import Layout from "../../layouts/layout.astro";
+
+const projects = [
+  {
+    title: "À venir",
+    description: "Projet en cours de développement, je suis impatiente de pouvoir en parler très vite !",
+    image: null,
+    tags: [],
+    status: "En cours",
+    statusColor: "#7c3aed",
+    category: ["Produits en cours"],
+    themes: [],
+    link: null,
+  },
+  {
+    title: "Tableau de bord personnel",
+    description: "Outil de suivi de mes projets, idées, inspirations et apprentissages. Un espace pour m'organiser et rester créative.",
+    image: null,
+    tags: ["Dashboard", "Next.js", "Tailwind CSS"],
+    status: "En développement",
+    statusColor: "#7c3aed",
+    category: ["Produits en cours"],
+    themes: ["Développement", "Design & UX"],
+    link: null,
+  },
+  {
+    title: "Suivi de candidatures",
+    description: "Outil pour suivre mes candidatures multi-sites, création de CV et lettres de motivation assistée par l'IA.",
+    image: null,
+    tags: ["Next.js", "IA", "OpenAI API"],
+    status: "En développement",
+    statusColor: "#7c3aed",
+    category: ["Produits en cours"],
+    themes: ["Développement", "Data & IA"],
+    link: null,
+  },
+];
+
+const categories = [
+  { label: "Tous les projets", count: projects.length },
+  { label: "Produits en cours", count: projects.filter(p => p.category.includes("Produits en cours")).length },
+  { label: "Projets réalisés", count: 0 },
+  { label: "Open source", count: 0 },
+  { label: "Expérimentations", count: 0 },
+];
+
+const themes = [
+  { icon: "brush", label: "Design & UX" },
+  { icon: "code", label: "Développement" },
+  { icon: "groups", label: "Management" },
+  { icon: "psychology", label: "Data & IA" },
+  { icon: "tune", label: "Productivité" },
+];
+
+const statusConfig: Record<string, { color: string; bg: string }> = {
+  "En développement": { color: "#7c3aed", bg: "#7c3aed18" },
+  "En cours":         { color: "#7c3aed", bg: "#7c3aed18" },
+  "Terminé":          { color: "#16a34a", bg: "#16a34a18" },
+  "Maintenu":         { color: "#2563eb", bg: "#2563eb18" },
+  "En expérimentation":{ color: "#d97706", bg: "#d9770618" },
+};
+---
+
+<Layout title="Projets — Jennifer Buisson">
+  <div class="mx-auto max-w-7xl px-6 py-16 flex gap-12">
+
+    <!-- Sidebar -->
+    <aside class="hidden lg:flex flex-col w-64 shrink-0">
+      <h1 class="text-5xl font-bold leading-tight mb-2">
+        Projets<span class="text-[#6b47dc]">.</span>
+      </h1>
+      <p class="font-caveat text-lg text-[#666] mb-8 leading-snug">
+        Des produits, expérimentations et outils<br />
+        que je construis ou auxquels je contribue.
+      </p>
+      <div class="w-8 h-0.5 bg-[#5535c4] mb-8"></div>
+
+      <!-- Filtres catégorie -->
+      <nav class="mb-8">
+        {categories.map((cat) => (
+          <button
+            data-filter="category"
+            data-value={cat.label}
+            class="filter-cat w-full flex items-center justify-between py-2 text-sm text-left transition hover:text-[#6b47dc]"
+          >
+            <span>{cat.label}</span>
+            <span class="text-[#bbb] text-xs">{cat.count}</span>
+          </button>
+        ))}
+      </nav>
+
+      <!-- Filtres thématiques -->
+      <p class="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#aaa] mb-4">Filtrer par thématiques</p>
+      <div class="space-y-2 mb-6">
+        {themes.map((t) => (
+          <label class="flex items-center gap-3 cursor-pointer group">
+            <span class="material-icons-round text-base text-[#999] group-hover:text-[#6b47dc] transition">{t.icon}</span>
+            <span class="text-sm text-[#444] flex-1">{t.label}</span>
+            <input
+              type="checkbox"
+              data-filter="theme"
+              data-value={t.label}
+              class="theme-checkbox w-4 h-4 accent-[#6b47dc] rounded"
+            />
+          </label>
+        ))}
+      </div>
+      <button id="reset-filters" class="flex items-center gap-2 text-xs text-[#999] hover:text-[#6b47dc] transition mt-2">
+        <span class="material-icons-round text-sm">refresh</span>
+        Réinitialiser
+      </button>
+    </aside>
+
+    <!-- Contenu principal -->
+    <div class="flex-1 min-w-0">
+      <!-- Header -->
+      <div class="flex items-start justify-between mb-10 gap-6">
+        <p class="text-[#555] max-w-md text-sm leading-relaxed">
+          Voici une sélection de projets sur lesquels je travaille, que j'ai réalisés ou explorés.
+          Chacun m'a permis d'apprendre, de tester, d'itérer et de grandir.
+        </p>
+        <div class="hidden sm:flex items-center gap-2 shrink-0">
+          <span class="text-sm text-[#888]">Trier par</span>
+          <div class="flex items-center gap-1 border border-[#e5e5e5] rounded-full px-4 py-2 text-sm font-medium cursor-pointer hover:border-[#aaa] transition">
+            Plus récents
+            <span class="material-icons-round text-base ml-1">expand_more</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grille de projets -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" id="projects-grid">
+        {projects.map((project) => {
+          const st = statusConfig[project.status] ?? { color: "#888", bg: "#88888818" };
+          return (
+            <div
+              class="project-card bg-white border border-[#e5e5e5] rounded-2xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
+              data-category={JSON.stringify(project.category)}
+              data-themes={JSON.stringify(project.themes)}
+            >
+              <!-- Image ou placeholder -->
+              <div class="relative">
+                {project.image ? (
+                  <img src={project.image} alt={project.title} class="w-full h-44 object-cover" />
+                ) : (
+                  <div class="w-full h-44 bg-[#f5f5f5] flex items-center justify-center">
+                    <span class="material-icons-round text-5xl text-[#ddd]">image</span>
+                  </div>
+                )}
+                <!-- Badge statut en overlay -->
+                <span
+                  class="absolute top-3 left-3 text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full"
+                  style={`color: ${st.color}; background: white`}
+                >
+                  {project.status === "En développement" || project.status === "En cours" ? "EN COURS" :
+                   project.status === "Terminé" ? "RÉALISÉ" :
+                   project.status === "En expérimentation" ? "EXPÉRIMENTATION" :
+                   "OPEN SOURCE"}
+                </span>
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <h3 class="font-bold text-base mb-1">{project.title}</h3>
+                <p class="text-sm text-[#666] leading-relaxed mb-4 flex-1">{project.description}</p>
+
+                <!-- Tags -->
+                {project.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-1.5 mb-4">
+                    {project.tags.map((tag) => (
+                      <span class="text-xs text-[#555] bg-[#f0f0f0] px-2.5 py-1 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                )}
+
+                <!-- Footer carte -->
+                <div class="flex items-center justify-between pt-3 border-t border-[#f0f0f0]">
+                  <span class="flex items-center gap-1.5 text-xs font-medium" style={`color: ${st.color}`}>
+                    <span class="w-1.5 h-1.5 rounded-full inline-block" style={`background: ${st.color}`}></span>
+                    {project.status}
+                  </span>
+                  {project.link ? (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer"
+                      class="flex items-center gap-1 text-xs font-medium text-[#555] hover:text-[#6b47dc] transition">
+                      Voir le projet
+                      <span class="material-icons-round text-sm">arrow_forward</span>
+                    </a>
+                  ) : (
+                    <span class="text-xs text-[#bbb]">Bientôt disponible</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- État vide -->
+      <div id="empty-state" class="hidden text-center py-24 text-[#999]">
+        <span class="material-icons-round text-5xl mb-4 block">folder_open</span>
+        <p class="text-lg font-medium text-[#555] mb-2">Aucun projet pour cette sélection.</p>
+        <button id="reset-empty" class="mt-4 text-sm font-medium text-[#6b47dc] hover:underline">
+          ← Réinitialiser les filtres
+        </button>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  type FilterState = { category: string; themes: string[] };
+  const state: FilterState = { category: "Tous les projets", themes: [] };
+
+  const cards = document.querySelectorAll<HTMLElement>(".project-card");
+  const grid = document.getElementById("projects-grid")!;
+  const emptyState = document.getElementById("empty-state")!;
+  const catBtns = document.querySelectorAll<HTMLButtonElement>("[data-filter='category']");
+  const themeBoxes = document.querySelectorAll<HTMLInputElement>(".theme-checkbox");
+
+  function applyFilters() {
+    let visible = 0;
+    cards.forEach((card) => {
+      const cats: string[] = JSON.parse(card.dataset.category ?? "[]");
+      const themes: string[] = JSON.parse(card.dataset.themes ?? "[]");
+
+      const catMatch = state.category === "Tous les projets" || cats.includes(state.category);
+      const themeMatch = state.themes.length === 0 || state.themes.every((t) => themes.includes(t));
+
+      const show = catMatch && themeMatch;
+      card.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+
+    grid.style.display = visible === 0 ? "none" : "";
+    emptyState.classList.toggle("hidden", visible > 0);
+
+    catBtns.forEach((btn) => {
+      const active = btn.dataset.value === state.category;
+      btn.classList.toggle("text-[#6b47dc]", active);
+      btn.classList.toggle("font-semibold", active);
+    });
+  }
+
+  catBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.category = btn.dataset.value!;
+      applyFilters();
+    });
+  });
+
+  themeBoxes.forEach((box) => {
+    box.addEventListener("change", () => {
+      if (box.checked) {
+        state.themes.push(box.dataset.value!);
+      } else {
+        state.themes = state.themes.filter((t) => t !== box.dataset.value);
+      }
+      applyFilters();
+    });
+  });
+
+  function reset() {
+    state.category = "Tous les projets";
+    state.themes = [];
+    themeBoxes.forEach((b) => (b.checked = false));
+    applyFilters();
+  }
+
+  document.getElementById("reset-filters")?.addEventListener("click", reset);
+  document.getElementById("reset-empty")?.addEventListener("click", reset);
+
+  applyFilters();
+</script>

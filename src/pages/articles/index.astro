@@ -1,39 +1,104 @@
 ---
 import { getCollection } from "astro:content";
+import PostCard from "../../components/PostCard.astro";
 import Layout from "../../layouts/layout.astro";
 
-const posts = await getCollection("posts");
+const allPosts = await getCollection("posts");
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const categories = ["Tous", "Design", "Développement", "Management", "IA & Outils", "Apprentissages"];
 ---
 
-<Layout title="Articles — jnroudet">
-  <section class="py-20">
-    <p class="mb-4 text-sm uppercase tracking-[0.2em] text-[#6B705C]">
-      Articles
-    </p>
-
-    <h1 class="max-w-2xl text-5xl font-light md:text-6xl">
-      Réflexions, projets et explorations.
+<Layout title="Journal — Jennifer Buisson">
+  <!-- En-tête de page -->
+  <section class="mx-auto max-w-6xl px-6 pt-16 pb-10">
+    <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#888] mb-4">Journal</p>
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">
+      Réflexions <span class="text-[#6b47dc]">.</span>
     </h1>
+    <p class="text-[#666] max-w-xl">
+      Mes explorations autour du design, du développement et du management.
+    </p>
+  </section>
 
-    <div class="mt-16 grid gap-6 md:grid-cols-2">
-      {
-        posts.map((post) => (
-          <a
-            href={`/articles/${post.id.replace(".md", "")}`}
-            class="rounded-3xl border border-black/5 bg-white/50 p-8 shadow-sm transition hover:-translate-y-1 hover:bg-white/80"
-          >
-            <p class="text-sm text-[#6B705C]">
-              {post.data.date.toLocaleDateString("fr-FR")}
-            </p>
+  <!-- Filtres par catégorie -->
+  <section class="mx-auto max-w-6xl px-6 pb-10 border-b border-[#e5e5e5]">
+    <div class="flex flex-wrap gap-2" id="filters">
+      {categories.map((cat) => (
+        <button
+          data-category={cat}
+          class="filter-btn text-sm font-medium px-4 py-1.5 rounded-full border transition text-[#555] border-[#e5e5e5] hover:border-[#aaa]"
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  </section>
 
-            <h2 class="mt-3 text-2xl">{post.data.title}</h2>
+  <!-- Liste des articles -->
+  <section class="mx-auto max-w-6xl px-6 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="posts-grid">
+      {posts.map((post) => (
+        <div class="post-card" data-category={post.data.category ?? ""}>
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            slug={post.id}
+            category={post.data.category}
+            readingTime={post.data.readingTime}
+          />
+        </div>
+      ))}
+    </div>
 
-            <p class="mt-4 text-black/70">{post.data.description}</p>
-          </a>
-        ))
-      }
+    <div id="empty-state" class="hidden text-center py-24 text-[#999]">
+      <span class="material-icons-round text-5xl mb-4 block">article</span>
+      <p class="text-lg font-medium text-[#555] mb-2">Aucun article dans cette catégorie.</p>
+      <p class="text-sm">Le contenu arrive bientôt.</p>
+      <button
+        data-category="Tous"
+        class="filter-btn inline-block mt-6 text-sm font-medium text-[#6b47dc] hover:underline"
+      >
+        ← Voir tous les articles
+      </button>
     </div>
   </section>
 </Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+  const cards = document.querySelectorAll<HTMLElement>(".post-card");
+  const grid = document.getElementById("posts-grid")!;
+  const emptyState = document.getElementById("empty-state")!;
+
+  function setActive(category: string) {
+    buttons.forEach((btn) => {
+      const isActive = btn.dataset.category === category;
+      btn.classList.toggle("bg-[#5535c4]", isActive);
+      btn.classList.toggle("text-white", isActive);
+      btn.classList.toggle("border-[#6b47dc]", isActive);
+      btn.classList.toggle("text-[#555]", !isActive);
+      btn.classList.toggle("border-[#e5e5e5]", !isActive);
+    });
+
+    let visible = 0;
+    cards.forEach((card) => {
+      const match = category === "Tous" || card.dataset.category === category;
+      card.style.display = match ? "" : "none";
+      if (match) visible++;
+    });
+
+    grid.style.display = visible === 0 ? "none" : "";
+    emptyState.classList.toggle("hidden", visible > 0);
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => setActive(btn.dataset.category!));
+  });
+
+  // Init depuis l'URL
+  const params = new URLSearchParams(window.location.search);
+  const initial = params.get("category") ?? "Tous";
+  setActive(initial);
+</script>
