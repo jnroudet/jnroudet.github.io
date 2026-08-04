@@ -94,7 +94,7 @@ const education = [
       <div>
         <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#888] mb-4">À propos</p>
         <h1 class="text-4xl md:text-5xl font-bold mb-6">
-          Jennifer Buisson <span class="text-[#6b47dc]">.</span>
+          Jennifer Buisson <span class="text-[#B14AED]">.</span>
         </h1>
         <p class="text-lg text-[#555] font-medium mb-6">Engineering Manager · Lead Frontend</p>
         <p class="text-[#666] leading-relaxed max-w-2xl mb-8">
@@ -108,7 +108,7 @@ const education = [
             href="https://www.linkedin.com/in/jennifer-buisson-engineering-manager/"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full border border-[#e5e5e5] hover:border-[#6b47dc] hover:text-[#6b47dc] transition"
+            class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full border border-[#e5e5e5] hover:border-[#B14AED] hover:text-[#B14AED] transition"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             LinkedIn
@@ -117,7 +117,7 @@ const education = [
             href="https://github.com/jnroudet"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full border border-[#e5e5e5] hover:border-[#6b47dc] hover:text-[#6b47dc] transition"
+            class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full border border-[#e5e5e5] hover:border-[#B14AED] hover:text-[#B14AED] transition"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             GitHub
@@ -137,19 +137,19 @@ const education = [
       <div class="bg-[#f8f8f8] rounded-2xl p-6 min-w-[220px]">
         <ul class="space-y-4 text-sm">
           <li class="flex items-start gap-3">
-            <span class="material-icons-round text-[#6b47dc] text-base mt-0.5">location_on</span>
+            <span class="material-icons-round text-[#B14AED] text-base mt-0.5">location_on</span>
             <span class="text-[#444]">Montpellier, France<br /><span class="text-[#888]">Remote France</span></span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-icons-round text-[#6b47dc] text-base mt-0.5">work</span>
+            <span class="material-icons-round text-[#B14AED] text-base mt-0.5">work</span>
             <span class="text-[#444]">10 ans d'expérience</span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-icons-round text-[#6b47dc] text-base mt-0.5">translate</span>
+            <span class="material-icons-round text-[#B14AED] text-base mt-0.5">translate</span>
             <span class="text-[#444]">Français (natif)<br /><span class="text-[#888]">Anglais (B1)</span></span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="material-icons-round text-[#6b47dc] text-base mt-0.5">favorite</span>
+            <span class="material-icons-round text-[#B14AED] text-base mt-0.5">favorite</span>
             <span class="text-[#444]">Escalade · Badminton<br />Impression 3D · Écriture</span>
           </li>
         </ul>
@@ -163,17 +163,17 @@ const education = [
         <!-- Expérience -->
         <section class="mb-16">
           <h2 class="text-2xl font-bold mb-8">
-            Expérience <span class="text-[#6b47dc]">.</span>
+            Expérience <span class="text-[#B14AED]">.</span>
           </h2>
           <div class="space-y-10">
             {experiences.map((exp) => (
-              <div class="relative pl-6 border-l-2 border-[#e5e5e5] hover:border-[#6b47dc] transition-colors">
+              <div class="relative pl-6 border-l-2 border-[#e5e5e5] hover:border-[#B14AED] transition-colors">
                 <div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-[#5535c4]"></div>
                 <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
                   <h3 class="font-bold text-base">{exp.title}</h3>
                   <span class="text-xs text-[#999]">{exp.period}</span>
                 </div>
-                <p class="text-sm text-[#6b47dc] font-medium mb-3">{exp.company} · {exp.location}</p>
+                <p class="text-sm text-[#B14AED] font-medium mb-3">{exp.company} · {exp.location}</p>
                 <ul class="space-y-1.5">
                   {exp.bullets.map((b) => (
                     <li class="text-sm text-[#555] leading-relaxed flex gap-2">
@@ -190,17 +190,17 @@ const education = [
         <!-- Formation -->
         <section>
           <h2 class="text-2xl font-bold mb-8">
-            Formation <span class="text-[#6b47dc]">.</span>
+            Formation <span class="text-[#B14AED]">.</span>
           </h2>
           <div class="space-y-6">
             {education.map((edu) => (
-              <div class="relative pl-6 border-l-2 border-[#e5e5e5] hover:border-[#6b47dc] transition-colors">
+              <div class="relative pl-6 border-l-2 border-[#e5e5e5] hover:border-[#B14AED] transition-colors">
                 <div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-[#5535c4]"></div>
                 <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
                   <h3 class="font-bold text-base">{edu.degree}</h3>
                   <span class="text-xs text-[#999]">{edu.period}</span>
                 </div>
-                <p class="text-sm text-[#6b47dc] font-medium">{edu.school}</p>
+                <p class="text-sm text-[#B14AED] font-medium">{edu.school}</p>
               </div>
             ))}
           </div>
@@ -210,7 +210,7 @@ const education = [
       <!-- Sidebar compétences -->
       <aside class="space-y-8">
         <h2 class="text-2xl font-bold">
-          Compétences <span class="text-[#6b47dc]">.</span>
+          Compétences <span class="text-[#B14AED]">.</span>
         </h2>
         {skills.map((group) => (
           <div>
@@ -226,8 +226,8 @@ const education = [
         ))}
 
         <!-- Encart livre -->
-        <div class="mt-8 bg-[#5535c4]/5 border border-[#6b47dc]/20 rounded-2xl p-5">
-          <span class="material-icons-round text-[#6b47dc] mb-2 block">auto_stories</span>
+        <div class="mt-8 bg-[#5535c4]/5 border border-[#B14AED]/20 rounded-2xl p-5">
+          <span class="material-icons-round text-[#B14AED] mb-2 block">auto_stories</span>
           <p class="text-sm font-semibold text-[#333] mb-1">Livre en cours d'écriture</p>
           <p class="text-xs text-[#666] leading-relaxed">
             Auteure d'un livre sur l'engineering management - retours d'expérience, méthodes et réflexions sur le rôle de manager tech.

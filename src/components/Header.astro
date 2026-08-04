@@ -9,11 +9,11 @@ const links = [
 const pathname = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 bg-[#f3f0ff]">
+<header class="sticky top-0 z-50 bg-color">
   <nav class="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <a href="/" class="text-xl font-bold tracking-tight">JB.</a>
 
-    <ul class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-xs font-medium uppercase tracking-wide">
+    <ul class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-sm font-medium uppercase tracking-wide">
       {
         links.map((link) => {
           const isActive =
@@ -24,10 +24,10 @@ const pathname = Astro.url.pathname;
             <li>
               <a
                 href={link.href}
-                class={`transition hover:text-black ${
+                class={`transition border-2 border-transparent px-3 py-1 rounded-[2vw] hover:border-[#D74E09] ${
                   isActive
-                    ? "text-[#5535c4] font-semibold"
-                    : "text-[#555555]"
+                    ? "text-accent font-semibold"
+                    : "text-color"
                 }`}
               >
                 {link.label}

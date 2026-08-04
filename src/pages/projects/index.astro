@@ -68,7 +68,7 @@ const statusConfig: Record<string, { color: string; bg: string }> = {
     <!-- Sidebar -->
     <aside class="hidden lg:flex flex-col w-64 shrink-0">
       <h1 class="text-5xl font-bold leading-tight mb-2">
-        Projets<span class="text-[#6b47dc]">.</span>
+        Projets<span class="text-[#B14AED]">.</span>
       </h1>
       <p class="font-caveat text-lg text-[#666] mb-8 leading-snug">
         Des produits, expérimentations et outils<br />
@@ -82,7 +82,7 @@ const statusConfig: Record<string, { color: string; bg: string }> = {
           <button
             data-filter="category"
             data-value={cat.label}
-            class="filter-cat w-full flex items-center justify-between py-2 text-sm text-left transition hover:text-[#6b47dc]"
+            class="filter-cat w-full flex items-center justify-between py-2 text-sm text-left transition hover:text-[#B14AED]"
           >
             <span>{cat.label}</span>
             <span class="text-[#bbb] text-xs">{cat.count}</span>
@@ -95,18 +95,18 @@ const statusConfig: Record<string, { color: string; bg: string }> = {
       <div class="space-y-2 mb-6">
         {themes.map((t) => (
           <label class="flex items-center gap-3 cursor-pointer group">
-            <span class="material-icons-round text-base text-[#999] group-hover:text-[#6b47dc] transition">{t.icon}</span>
+            <span class="material-icons-round text-base text-[#999] group-hover:text-[#B14AED] transition">{t.icon}</span>
             <span class="text-sm text-[#444] flex-1">{t.label}</span>
             <input
               type="checkbox"
               data-filter="theme"
               data-value={t.label}
-              class="theme-checkbox w-4 h-4 accent-[#6b47dc] rounded"
+              class="theme-checkbox w-4 h-4 accent-[#B14AED] rounded"
             />
           </label>
         ))}
       </div>
-      <button id="reset-filters" class="flex items-center gap-2 text-xs text-[#999] hover:text-[#6b47dc] transition mt-2">
+      <button id="reset-filters" class="flex items-center gap-2 text-xs text-[#999] hover:text-[#B14AED] transition mt-2">
         <span class="material-icons-round text-sm">refresh</span>
         Réinitialiser
       </button>
@@ -181,7 +181,7 @@ const statusConfig: Record<string, { color: string; bg: string }> = {
                   </span>
                   {project.link ? (
                     <a href={project.link} target="_blank" rel="noopener noreferrer"
-                      class="flex items-center gap-1 text-xs font-medium text-[#555] hover:text-[#6b47dc] transition">
+                      class="flex items-center gap-1 text-xs font-medium text-[#555] hover:text-[#B14AED] transition">
                       Voir le projet
                       <span class="material-icons-round text-sm">arrow_forward</span>
                     </a>
@@ -199,7 +199,7 @@ const statusConfig: Record<string, { color: string; bg: string }> = {
       <div id="empty-state" class="hidden text-center py-24 text-[#999]">
         <span class="material-icons-round text-5xl mb-4 block">folder_open</span>
         <p class="text-lg font-medium text-[#555] mb-2">Aucun projet pour cette sélection.</p>
-        <button id="reset-empty" class="mt-4 text-sm font-medium text-[#6b47dc] hover:underline">
+        <button id="reset-empty" class="mt-4 text-sm font-medium text-[#B14AED] hover:underline">
           ← Réinitialiser les filtres
         </button>
       </div>
@@ -236,7 +236,7 @@ const statusConfig: Record<string, { color: string; bg: string }> = {
 
     catBtns.forEach((btn) => {
       const active = btn.dataset.value === state.category;
-      btn.classList.toggle("text-[#6b47dc]", active);
+      btn.classList.toggle("text-[#B14AED]", active);
       btn.classList.toggle("font-semibold", active);
     });
   }

@@ -14,30 +14,16 @@ const categories = ["Tous", "Design", "Développement", "Management", "IA & Outi
   <section class="mx-auto max-w-6xl px-6 pt-16 pb-10">
     <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#888] mb-4">Journal</p>
     <h1 class="text-4xl md:text-5xl font-bold mb-4">
-      Réflexions <span class="text-[#6b47dc]">.</span>
+      Réflexions <span class="text-[#B14AED]">.</span>
     </h1>
     <p class="text-[#666] max-w-xl">
       Mes explorations autour du design, du développement et du management.
     </p>
   </section>
 
-  <!-- Filtres par catégorie -->
-  <section class="mx-auto max-w-6xl px-6 pb-10 border-b border-[#e5e5e5]">
-    <div class="flex flex-wrap gap-2" id="filters">
-      {categories.map((cat) => (
-        <button
-          data-category={cat}
-          class="filter-btn text-sm font-medium px-4 py-1.5 rounded-full border transition text-[#555] border-[#e5e5e5] hover:border-[#aaa]"
-        >
-          {cat}
-        </button>
-      ))}
-    </div>
-  </section>
-
   <!-- Liste des articles -->
   <section class="mx-auto max-w-6xl px-6 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="posts-grid">
+    <div class="flex flex-col gap-6" id="posts-grid">
       {posts.map((post) => (
         <div class="post-card" data-category={post.data.category ?? ""}>
           <PostCard
@@ -58,7 +44,7 @@ const categories = ["Tous", "Design", "Développement", "Management", "IA & Outi
       <p class="text-sm">Le contenu arrive bientôt.</p>
       <button
         data-category="Tous"
-        class="filter-btn inline-block mt-6 text-sm font-medium text-[#6b47dc] hover:underline"
+        class="filter-btn inline-block mt-6 text-sm font-medium text-[#B14AED] hover:underline"
       >
         ← Voir tous les articles
       </button>
@@ -77,7 +63,7 @@ const categories = ["Tous", "Design", "Développement", "Management", "IA & Outi
       const isActive = btn.dataset.category === category;
       btn.classList.toggle("bg-[#5535c4]", isActive);
       btn.classList.toggle("text-white", isActive);
-      btn.classList.toggle("border-[#6b47dc]", isActive);
+      btn.classList.toggle("border-[#B14AED]", isActive);
       btn.classList.toggle("text-[#555]", !isActive);
       btn.classList.toggle("border-[#e5e5e5]", !isActive);
     });

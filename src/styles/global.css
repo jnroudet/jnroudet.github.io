@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ultra&family=Slabo+27px&family=Caveat:wght@400..700&display=swap");
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
 
 @import "tailwindcss";
@@ -8,13 +7,24 @@
   font-family: "Caveat", cursive;
 }
 
+@utility font-ultra {
+  font-family: "Ultra", serif;
+}
+
 :root {
-  --color-bg: #f3f0ff;
-  --color-text: #111111;
+  --color-bg: #FEEBF4;
+  --color-text: #1F2937;
   --color-muted: #666666;
   --color-border: #e5e5e5;
-  --color-accent: #6b47dc;
-  --color-card: #f8f8f8;
+  --color-accent: #B14AED;
+  --color-card: #E5B769;
+
+  /* Hero palette */
+  --color-petal:    #FED4E7; 
+  --color-mauve:    #EDC9FF; 
+  --color-magenta:    #B14AED;
+  --color-orange:    #D74E09; 
+  --color-sunlit:       #E5B769; 
 }
 
 * {
@@ -22,10 +32,38 @@
 }
 
 html {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Slabo 27px", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Ultra", serif;
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+.bg-color {
+  background-color: var(--color-bg);
+}
+
+.text-color {
+  color: var(--color-text);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-violet {
+  color: var(--color-violet);
+}
+
+.text-sunlit {
+  color: var(--color-sunlit);
+}
+
+.text-orange {
+  color: var(--color-orange);
 }
